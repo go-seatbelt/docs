@@ -1,0 +1,158 @@
+{{ template "components/header" . }}
+
+<div class="relative flex">
+  <div class="hidden md:block fixed flex-shrink-0 bg-slate-100 w-64 ml-6 rounded-lg px-4 py-6">
+    <h2 class="text-lg font-bold mb-6">seatbelt.App</h2>
+    <a href="/api#seatbelt.App" class="block mb-4 text-sm font-mono hover:underline">type seatbelt.App</a>
+    <a href="/api#seatbelt.New" class="block mb-4 text-sm font-mono hover:underline">func seatbelt.New</a>
+    <a href="/api#seatbelt.Start" class="block mb-4 text-sm font-mono hover:underline">func app.Start</a>
+    <a href="/api#seatbelt.Use" class="block mb-4 text-sm font-mono hover:underline">func app.Use</a>
+    <a href="/api#seatbelt.UseStd" class="block mb-4 text-sm font-mono hover:underline">func app.UseStd</a>
+    <a href="/api#seatbelt.SetErrorHandler" class="block mb-4 text-sm font-mono hover:underline">func app.SetErrorHandler</a>
+    <a href="/api#seatbelt.Namespace" class="block mb-4 text-sm font-mono hover:underline">func app.Namespace</a>
+  </div>
+
+  <div class="ml-0 md:ml-72">
+    <main class="max-w-3xl p-6">
+      <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-12 text-pink-500">API Reference</h1>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.App" class="font-mono">
+            <a name="seatbelt.App">type <span class="text-sky-600">seatbelt.App</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.App" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">A <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*seatbelt.App</code> is the core of your application. It contains routing and middleware information, stores templates and internationalization data, and manages sessions and flashes.</p>
+        <p class="text-slate-600 text-base leading-relaxed">It is not an HTTP server. While it does provide a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Start()</code> method for convenience, it is not intended for production use. Instead, you should create an instance of a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*http.Server</code>, and pass the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*seatbelt.App</code> as its <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Handler</code>.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.New" class="font-mono">
+            <a name="seatbelt.New">func <span class="text-sky-600">seatbelt.New</span>(opts ...<span class="text-sky-600">seatbelt.Opts</span>) <span class="text-sky-600">*seatbelt.App</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.New" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Use <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">seatbelt.New</code> to create and configure a new instance of a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*seatbelt.App</code> using the given <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">seabelt.Opts</code> to configure it. The following options are available:</p>
+        <ul class="list-outside list-disc text-slate-600 text-base leading-relaxed ml-12">
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">TemplateDir <span class="text-sky-600">string</span></code> The directory containing your HTML templates. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">"templates"</code>.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">LocaleDir <span class="text-sky-600">string</span></code> The directory containing your translation files. Defaults to an empty string, which disables translation support in your application.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SigningKey <span class="text-sky-600">string</span></code> The secret key used to sign the session cookie. Defaults to an empty string. Setting an empty string will cause Seatbelt to generate a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">master.key</code> file at the root of your application, which Seatbelt picks up and uses to sign sessions. This generated secret is used for convenience in development only. Do not put this secret under source control, and set this value automatically by setting the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SECRET</code> environment variable in production.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SessionName <span class="text-sky-600">string</span></code> The name of the session cookie. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">"_session"</code>.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SessionMaxAge <span class="text-sky-600">int</span></code> The max age that the session cookie is valid. Defaults to 365 days. Pass <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">-1</code> if you want the session to never expire.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Reload <span class="text-sky-600">bool</span></code> Whether to reload the HTML templates and translation data from the filesystem on each request. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">false</code>. This is provided as a convenience in development, but significantly impacts performance. Do not enable this in production.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SkipServeFiles <span class="text-sky-600">bool</span></code> When true, this stops Seatbelt from serving static files from the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">public</code> folder. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">false</code>, meaning that static files are served by default.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Funcs <span class="text-pink-500">func</span><span class="text-sky-600">(w http.ResponseWriter, r *http.Request) template.FuncMap</span></code> HTML template functions to call from your templates. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">nil</code>, but please see the list of default functions.</li>
+        </ul>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.Start" class="font-mono">
+            <a name="seatbelt.Start">func (app<span class="text-sky-600"> *seatbelt.App</span>) <span class="text-sky-600">Start</span>(port <span class="text-sky-600">string</span>) <span class="text-sky-600">error</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Start" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">The method <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Start()</code> is a convenience method for starting an HTTP server that runs your application.</p>
+        <p class="text-slate-600 text-base leading-relaxed">The started HTTP server is not suited for production use. Instead, you should create an instance of an <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*http.Server</code>, and pass the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*seatbelt.App</code> as its <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Handler</code>.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.Use" class="font-mono">
+            <a name="seatbelt.Use">func <span class="text-sky-600">(app *seatbelt.App) Use(middleware ...seatbelt.MiddlewareFunc)</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Use" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Registers HTTP middleware on the application.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.UseStd" class="font-mono">
+            <a name="seatbelt.UseStd">func <span class="text-sky-600">(app *seatbelt.App) UseStd(middleware ...func(http.Handler) http.Handler)</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.UseStd" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Registers standard library compatible HTTP middleware on the application.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.SetErrorHandler" class="font-mono">
+            <a name="seatbelt.SetErrorHandler">func <span class="text-sky-600">(a *seatbelt.App) SetErrorHandler(fn func(c *seatbelt.Context, err error))</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.SetErrorHandler" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Sets the given function as the application-wide error handler. When this handler isn't set, the default behaviour is to log the error, and either reply with the error (for idempotent request) or redirect to the referrer with a flash message containing the error (for all other requests).</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-xl font-semibold mb-4">
+          <h3 id="seatbelt.Namespace" class="font-mono">
+            <a name="seatbelt.Namespace">func <span class="text-sky-600">func (a *seatbelt.App) Namespace(pattern string, fn func(app *seatbelt.App)) *seatbelt.App</span></a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Namespace" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+    </main>
+  </div>
+</div>

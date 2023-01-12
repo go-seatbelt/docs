@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"html/template"
+	"net/http"
 	"os"
 	"strings"
 
@@ -17,6 +18,16 @@ func main() {
 	app := seatbelt.New(seatbelt.Option{
 		TemplateDir: "templates",
 		Reload:      os.Getenv("ENV") != "production",
+		Funcs: func(w http.ResponseWriter, r *http.Request) template.FuncMap {
+			return template.FuncMap{
+				"CurrentPageClasses": func(path, active, inactive string) string {
+					if strings.Contains(r.URL.Path, path) {
+						return active
+					}
+					return inactive
+				},
+			}
+		},
 	})
 
 	app.Get("/", func(c *seatbelt.Context) error {
@@ -31,6 +42,12 @@ func main() {
 	app.Post("/", func(c *seatbelt.Context) error {
 		c.Session.Set("name", c.FormValue("name"))
 		return c.Redirect("/")
+	})
+	app.Get("/guide", func(c *seatbelt.Context) error {
+		return c.Render("guide", nil)
+	})
+	app.Get("/api", func(c *seatbelt.Context) error {
+		return c.Render("api", nil)
 	})
 	app.Start(":3000")
 }
