@@ -96,13 +96,19 @@
       <pre style="height:366px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .SessionGo }}</pre>
       <pre style="height:366px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .SessionHTML }}</pre>
       <div style="height:366px" class="js-tabcontent hidden bg-slate-100 rounded-b-lg px-4 py-2.5">
-        <h1>Name: {{ .Name }}</h1>
-        <form method="POST" action="/">
-          {{ csrf }}
-          <label>Name</label>
-          <input type="text" name="name"/>
-          <input type="submit" value="Submit"/>
-        </form>
+        <turbo-frame id="main">
+          <div class="text-sm text-slate-500 mb-1">Current session value</div>
+          <p class="text-lg mb-6 font-medium">{{ .Name }}</p>
+
+          <form method="POST" action="/">
+            {{ csrf }}
+            <label class="block text-sm text-slate-500 mb-1">Set new session value</label>
+            <div class="flex">
+              <input class="inline-block p-2 text-base rounded-l-lg" type="text" name="name"/>
+              <input class="inline-block ml-0 px-3 py-2 rounded-r-lg border-slate-300 bg-slate-200" type="submit" value="Submit"/>
+            </div>
+          </form>
+        </turbo-frame>
       </div>
     </div>
   </section>

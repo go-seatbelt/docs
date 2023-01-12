@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"os"
 	"strings"
@@ -27,7 +26,6 @@ func main() {
 		}
 		name := c.Session.Get("name")
 		data["Name"] = name
-		fmt.Printf("%#v\n", name)
 		return c.Render("index", data)
 	})
 	app.Post("/", func(c *seatbelt.Context) error {
@@ -133,10 +131,10 @@ func main() {
   <title>Sessions</title>
 </head>
 <body>
-  <h1>Name: {{ .Name }}</h1>
+  <h1>Current session value: {{ .Name }}</h1>
   <form method="POST" action="/">
     {{ csrf }}
-    <label>Name</label>
+    <label>Set new session value:</label>
     <input type="text" name="name"/>
     <input type="submit" value="Submit"/>
   </form>
