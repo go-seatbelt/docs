@@ -1,0 +1,27 @@
+{
+  "name": "seatbelt-docs",
+  "version": "0.0.1",
+  "description": "Documentation site for Seatbelt",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "start": "tailwindcss -i ./assets/css/input.css -o ./public/css/style.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/go-seatbelt/seatbelt.git"
+  },
+  "keywords": [
+    "go-seatbelt",
+    "seatbelt"
+  ],
+  "author": "Ben Tranter",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/go-seatbelt/seatbelt/issues"
+  },
+  "homepage": "https://github.com/go-seatbelt/seatbelt#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}

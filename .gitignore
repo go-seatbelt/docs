@@ -1,0 +1,5 @@
+*.swp
+.DS_Store
+
+master.key
+node_modules
