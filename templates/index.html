@@ -1,6 +1,6 @@
 {{ template "components/header" . }}
 
-<main class="max-w-4xl mx-auto p-6">
+<main class="max-w-4xl mx-auto p-6 mt-10">
   <section class="mb-20">
     <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-4 text-center text-pink-500">Seatbelt</h1>
     <p class="text-xl sm:text-3xl text-center tracking-tight mb-4">Build HTML web apps with Go</p>
@@ -23,11 +23,11 @@
     <p class="text-slate-600 mb-4 leading-relaxed">With the library installed, create a new file named <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">main.go</code> with the following code. This starts a server on http://localhost:3000 that responds with "Hello, world!" in plain text.</p>
 
     <div class="js-example">
-      <div class="flex text-sm rounded-t-lg bg-slate-800 border-b border-slate-900 text-slate-200">
+      <div class="flex text-sm rounded-t-lg bg-slate-200 border-b border-slate-300 text-slate-600">
         <button class="js-tab px-4 py-1">main.go</button>
-        <button class="js-tab px-4 py-1 border-l border-slate-900 opacity-50">Result</button>
+        <button class="js-tab px-4 py-1 border-l border-slate-300 opacity-50">Result</button>
       </div>
-      <pre style="height:246px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .QuickstartGo }}</pre>
+      <pre style="height:246px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-100 text-slate-300 overflow-x-scroll">{{ .QuickstartGo }}</pre>
       <pre style="height:246px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-100">
         <h1>Hello, world!</h1>
       </pre>
@@ -47,13 +47,13 @@
     <p class="text-slate-600 mb-4 leading-relaxed">With the library installed, create a new file named <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">main.go</code> with the following code. This starts a server on http://localhost:3000 that responds with "Hello, world!" in plain text.</p>
 
     <div class="js-example">
-      <div class="flex text-sm rounded-t-lg bg-slate-800 border-b border-slate-900 text-slate-200">
+      <div class="flex text-sm rounded-t-lg bg-slate-200 border-b border-slate-300 text-slate-600">
         <button class="js-tab px-4 py-1">main.go</button>
-        <button class="js-tab px-4 py-1 border-l border-slate-900 opacity-50">templates/index.html</button>
-        <button class="js-tab px-4 py-1 border-l border-slate-900 opacity-50">Result</button>
+        <button class="js-tab px-4 py-1 border-l border-slate-300 opacity-50">templates/index.html</button>
+        <button class="js-tab px-4 py-1 border-l border-slate-300 opacity-50">Result</button>
       </div>
-      <pre style="height:286px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .RenderGo }}</pre>
-      <pre style="height:286px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .RenderHTML }}</pre>
+      <pre style="height:286px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll">{{ .RenderGo }}</pre>
+      <pre style="height:286px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll">{{ .RenderHTML }}</pre>
       <div style="height:286px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-100">
         <h1>Hello, world!</h1>
       </div>
@@ -74,13 +74,13 @@
     <p class="text-slate-600 mb-4 leading-relaxed">With the library installed, create a new file named <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">main.go</code> with the following code. This starts a server on http://localhost:3000 that responds with "Hello, world!" in plain text.</p>
 
     <div class="js-example">
-      <div class="flex text-sm rounded-t-lg bg-slate-800 border-b border-slate-900 text-slate-200">
+      <div class="flex text-sm rounded-t-lg bg-slate-200 border-b border-slate-300 text-slate-600">
         <button class="js-tab px-4 py-1">main.go</button>
-        <button class="js-tab px-4 py-1 border-l border-slate-900 opacity-50">templates/index.html</button>
-        <button class="js-tab px-4 py-1 border-l border-slate-900 opacity-50">Result</button>
+        <button class="js-tab px-4 py-1 border-l border-slate-300 opacity-50">templates/index.html</button>
+        <button class="js-tab px-4 py-1 border-l border-slate-300 opacity-50">Result</button>
       </div>
-      <pre style="height:366px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .SessionGo }}</pre>
-      <pre style="height:366px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-700 text-slate-300 overflow-x-scroll">{{ .SessionHTML }}</pre>
+      <pre style="height:366px" class="js-tabcontent text-sm rounded-b-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll">{{ .SessionGo }}</pre>
+      <pre style="height:366px" class="js-tabcontent hidden text-sm rounded-b-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll">{{ .SessionHTML }}</pre>
       <div style="height:366px" class="js-tabcontent hidden bg-slate-100 rounded-b-lg px-4 py-2.5">
         <turbo-frame id="main">
           <div class="text-sm text-slate-500 mb-1">Current session value</div>

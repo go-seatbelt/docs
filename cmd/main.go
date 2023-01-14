@@ -9,6 +9,7 @@ import (
 
 	"github.com/go-seatbelt/seatbelt"
 
+	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/lexers"
 	"github.com/alecthomas/chroma/styles"
@@ -26,6 +27,7 @@ func main() {
 					}
 					return inactive
 				},
+				"highlight": highlight,
 			}
 		},
 	})
@@ -52,13 +54,13 @@ func main() {
 	app.Start(":3000")
 }
 
+// highlight adds syntax highlighting to the given string.
+//
+// TODO Cache highlight results so that we don't have to precompile them.
 func highlight(lang, s string) template.HTML {
 	lexer := lexers.Get(lang)
 
-	style := styles.Get("nord")
-	if style == nil {
-		style = styles.Fallback
-	}
+	style := registerSeatbeltStyle()
 
 	formatter := html.New(
 		html.Standalone(true),
@@ -76,7 +78,7 @@ func highlight(lang, s string) template.HTML {
 	}
 
 	highlighted := buf.String()
-	highlighted = strings.TrimPrefix(highlighted, "<html>\n<body style=\"color:#d8dee9;background-color:#2e3440\">")
+	highlighted = strings.TrimPrefix(highlighted, "<html>\n<body style=\"\">\n")
 	highlighted = strings.TrimSuffix(highlighted, "</body>\n</html>\n")
 	highlighted = strings.TrimSpace(highlighted)
 
@@ -157,4 +159,59 @@ func main() {
   </form>
 </body>
 </html>`),
+}
+
+func registerSeatbeltStyle() *chroma.Style {
+	const (
+		black = "#0f172a"
+		blue  = "#0284c7"
+		pink  = "#ec4899"
+	)
+	return styles.Register(chroma.MustNewStyle(
+		"seatbelt",
+		chroma.StyleEntries{
+			chroma.Error: "#bf616a",
+			// chroma.Background:            "#ffffff bg:#ffffff",
+			chroma.Keyword:               blue,
+			chroma.KeywordPseudo:         blue,
+			chroma.KeywordType:           blue,
+			chroma.Name:                  black,
+			chroma.NameAttribute:         blue,
+			chroma.NameBuiltin:           black,
+			chroma.NameClass:             blue,
+			chroma.NameConstant:          blue,
+			chroma.NameDecorator:         "#d08770",
+			chroma.NameEntity:            "#d08770",
+			chroma.NameException:         "#bf616a",
+			chroma.NameFunction:          blue,
+			chroma.NameLabel:             blue,
+			chroma.NameNamespace:         blue,
+			chroma.NameTag:               black,
+			chroma.NameVariable:          black,
+			chroma.LiteralString:         pink,
+			chroma.LiteralStringDoc:      "#616e87",
+			chroma.LiteralStringEscape:   "#ebcb8b",
+			chroma.LiteralStringInterpol: pink,
+			chroma.LiteralStringOther:    pink,
+			chroma.LiteralStringRegex:    "#ebcb8b",
+			chroma.LiteralStringSymbol:   pink,
+			chroma.LiteralNumber:         pink,
+			chroma.Operator:              black,
+			chroma.OperatorWord:          black,
+			chroma.Punctuation:           black,
+			chroma.Comment:               "italic #616e87",
+			chroma.CommentPreproc:        black,
+			chroma.GenericDeleted:        "#bf616a",
+			chroma.GenericEmph:           "italic",
+			chroma.GenericError:          "#bf616a",
+			chroma.GenericHeading:        "bold #0284c7",
+			chroma.GenericInserted:       pink,
+			chroma.GenericOutput:         black,
+			chroma.GenericPrompt:         "bold #4c566a",
+			chroma.GenericStrong:         "bold",
+			chroma.GenericSubheading:     "bold #0284c7",
+			chroma.GenericTraceback:      "#bf616a",
+			chroma.TextWhitespace:        black,
+		},
+	))
 }
