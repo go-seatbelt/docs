@@ -1,51 +1,64 @@
 {{ template "components/header" . }}
 
-<div class="relative">
+<div class="relative rounded-lg">
   <div class="fixed top-24 bottom-6 overflow-y-scroll hidden md:block w-64 ml-6 mt-4 rounded-lg">
-    <div class="bg-slate-100 px-4 py-6">
-      <h2 class="text-lg font-bold mb-6">seatbelt.App</h2>
-      <a href="/api#seatbelt.App" class="js-toc js-one block mb-4 text-sm font-mono hover:underline">type seatbelt.App</a>
-      <a href="/api#seatbelt.New" class="js-toc js-two block mb-4 text-sm font-mono hover:underline">func seatbelt.New</a>
-      <a href="/api#seatbelt.Start" class="js-toc js-three block mb-4 text-sm font-mono hover:underline">func app.Start</a>
-      <a href="/api#seatbelt.Use" class="js-toc js-four block mb-4 text-sm font-mono hover:underline">func app.Use</a>
-      <a href="/api#seatbelt.UseStd" class="js-toc js-five block mb-4 text-sm font-mono hover:underline">func app.UseStd</a>
-      <a href="/api#seatbelt.SetErrorHandler" class="js-toc js-six block mb-4 text-sm font-mono hover:underline">func app.SetErrorHandler</a>
-      <a href="/api#seatbelt.Get" class="js-toc js-seven block mb-4 text-sm font-mono hover:underline">func app.Get</a>
-      <a href="/api#seatbelt.Post" class="js-toc js-eight block mb-4 text-sm font-mono hover:underline">func app.Post</a>
-      <a href="/api#seatbelt.Put" class="js-toc js-nine block mb-4 text-sm font-mono hover:underline">func app.Put</a>
-      <a href="/api#seatbelt.Patch" class="js-toc js-ten block mb-4 text-sm font-mono hover:underline">func app.Patch</a>
-      <a href="/api#seatbelt.Delete" class="js-toc js-eleven block mb-4 text-sm font-mono hover:underline">func app.Delete</a>
-      <a href="/api#seatbelt.Head" class="js-toc js-twelve block mb-4 text-sm font-mono hover:underline">func app.Head</a>
-      <a href="/api#seatbelt.Options" class="js-toc js-thirteen block mb-4 text-sm font-mono hover:underline">func app.Options</a>
-      <a href="/api#seatbelt.Namespace" class="js-toc js-fourteen block mb-4 text-sm font-mono hover:underline">func app.Namespace</a>
-      <a href="/api#seatbelt.FileServer" class="js-toc js-fifteen block mb-4 text-sm font-mono hover:underline">func app.FileServer</a>
-      <a href="/api#seatbelt.ServeHTTP" class="js-toc js-sixteen block mb-4 text-sm font-mono hover:underline">func app.ServeHTTP</a>
-      <h2 class="text-lg font-bold my-6">seatbelt.Context</h2>
-      <a href="/api#seatbelt.Context" class="js-toc js-seventeen block mb-4 text-sm font-mono hover:underline">type seatbelt.Context</a>
-      <a href="/api#seatbelt.Render" class="js-toc js-eighteen block mb-4 text-sm font-mono hover:underline">func context.Render</a>
-      <a href="/api#seatbelt.String" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.String</a>
-      <a href="/api#seatbelt.JSON" class="js-toc js-twenty block mb-4 text-sm font-mono hover:underline">func context.JSON</a>
-      <a href="/api#seatbelt.NoContent" class="js-toc js-twentyone block mb-4 text-sm font-mono hover:underline">func context.NoContent</a>
-      <a href="/api#seatbelt.Redirect" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Redirect</a>
-      <a href="/api#seatbelt.Params" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Params</a>
-      <a href="/api#seatbelt.FormValue" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.FormValue</a>
-      <a href="/api#seatbelt.PathParam" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.PathParam</a>
-      <a href="/api#seatbelt.QueryParam" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.QueryParam</a>
-      <a href="/api#seatbelt.GetIP" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.GetIP</a>
-      <a href="/api#seatbelt.Request" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Request</a>
-      <a href="/api#seatbelt.Response" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Response</a>
-      <a href="/api#seatbelt.Session.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Set</a>
-      <a href="/api#seatbelt.Session.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Get</a>
-      <a href="/api#seatbelt.Session.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.List</a>
-      <a href="/api#seatbelt.Session.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Delete</a>
-      <a href="/api#seatbelt.Session.Reset" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Reset</a>
-      <a href="/api#seatbelt.Flash.Add" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.Add</a>
-      <a href="/api#seatbelt.Flash.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.List</a>
-      <a href="/api#seatbelt.Values.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Set</a>
-      <a href="/api#seatbelt.Values.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Get</a>
-      <a href="/api#seatbelt.Values.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.List</a>
-      <a href="/api#seatbelt.Values.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Delete</a>
-      <a href="/api#seatbelt.I18N.T" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.I18N.T</a>
+    <div class="bg-slate-100 px-4 py-6 rounded-lg">
+      <details open>
+        <summary class="flex items-center justify-between mb-6">
+          <h2 class="text-lg font-bold">seatbelt.App</h2>
+          <svg class="fill-current opacity-75 w-4 h-4 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+        </summary>
+
+        <a href="/api#seatbelt.App" class="js-toc js-one block mb-4 text-sm font-mono hover:underline">type seatbelt.App</a>
+        <a href="/api#seatbelt.New" class="js-toc js-two block mb-4 text-sm font-mono hover:underline">func seatbelt.New</a>
+        <a href="/api#seatbelt.Start" class="js-toc js-three block mb-4 text-sm font-mono hover:underline">func app.Start</a>
+        <a href="/api#seatbelt.Use" class="js-toc js-four block mb-4 text-sm font-mono hover:underline">func app.Use</a>
+        <a href="/api#seatbelt.UseStd" class="js-toc js-five block mb-4 text-sm font-mono hover:underline">func app.UseStd</a>
+        <a href="/api#seatbelt.SetErrorHandler" class="js-toc js-six block mb-4 text-sm font-mono hover:underline">func app.SetErrorHandler</a>
+        <a href="/api#seatbelt.Get" class="js-toc js-seven block mb-4 text-sm font-mono hover:underline">func app.Get</a>
+        <a href="/api#seatbelt.Post" class="js-toc js-eight block mb-4 text-sm font-mono hover:underline">func app.Post</a>
+        <a href="/api#seatbelt.Put" class="js-toc js-nine block mb-4 text-sm font-mono hover:underline">func app.Put</a>
+        <a href="/api#seatbelt.Patch" class="js-toc js-ten block mb-4 text-sm font-mono hover:underline">func app.Patch</a>
+        <a href="/api#seatbelt.Delete" class="js-toc js-eleven block mb-4 text-sm font-mono hover:underline">func app.Delete</a>
+        <a href="/api#seatbelt.Head" class="js-toc js-twelve block mb-4 text-sm font-mono hover:underline">func app.Head</a>
+        <a href="/api#seatbelt.Options" class="js-toc js-thirteen block mb-4 text-sm font-mono hover:underline">func app.Options</a>
+        <a href="/api#seatbelt.Namespace" class="js-toc js-fourteen block mb-4 text-sm font-mono hover:underline">func app.Namespace</a>
+        <a href="/api#seatbelt.FileServer" class="js-toc js-fifteen block mb-4 text-sm font-mono hover:underline">func app.FileServer</a>
+        <a href="/api#seatbelt.ServeHTTP" class="js-toc js-sixteen block mb-4 text-sm font-mono hover:underline">func app.ServeHTTP</a>
+      </details>
+
+      <details open>
+        <summary class="flex items-center justify-between">
+          <h2 class="text-lg font-bold">seatbelt.Context</h2>
+          <svg class="fill-current opacity-75 w-4 h-4 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+        </summary>
+
+        <a href="/api#seatbelt.Context" class="js-toc js-seventeen block mt-6 mb-4 text-sm font-mono hover:underline">type seatbelt.Context</a>
+        <a href="/api#seatbelt.Render" class="js-toc js-eighteen block mb-4 text-sm font-mono hover:underline">func context.Render</a>
+        <a href="/api#seatbelt.String" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.String</a>
+        <a href="/api#seatbelt.JSON" class="js-toc js-twenty block mb-4 text-sm font-mono hover:underline">func context.JSON</a>
+        <a href="/api#seatbelt.NoContent" class="js-toc js-twentyone block mb-4 text-sm font-mono hover:underline">func context.NoContent</a>
+        <a href="/api#seatbelt.Redirect" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Redirect</a>
+        <a href="/api#seatbelt.Params" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Params</a>
+        <a href="/api#seatbelt.FormValue" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.FormValue</a>
+        <a href="/api#seatbelt.PathParam" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.PathParam</a>
+        <a href="/api#seatbelt.QueryParam" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.QueryParam</a>
+        <a href="/api#seatbelt.GetIP" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.GetIP</a>
+        <a href="/api#seatbelt.Request" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Request</a>
+        <a href="/api#seatbelt.Response" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Response</a>
+        <a href="/api#seatbelt.Session.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Set</a>
+        <a href="/api#seatbelt.Session.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Get</a>
+        <a href="/api#seatbelt.Session.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.List</a>
+        <a href="/api#seatbelt.Session.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Delete</a>
+        <a href="/api#seatbelt.Session.Reset" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Reset</a>
+        <a href="/api#seatbelt.Flash.Add" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.Add</a>
+        <a href="/api#seatbelt.Flash.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.List</a>
+        <a href="/api#seatbelt.Values.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Set</a>
+        <a href="/api#seatbelt.Values.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Get</a>
+        <a href="/api#seatbelt.Values.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.List</a>
+        <a href="/api#seatbelt.Values.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Delete</a>
+        <a href="/api#seatbelt.I18N.T" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.I18N.T</a>
+      </details>
     </div>
   </div>
 
