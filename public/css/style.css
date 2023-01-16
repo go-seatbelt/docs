@@ -571,11 +571,6 @@ summary::-webkit-details-marker {
   bottom: 1.5rem;
 }
 
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -593,8 +588,16 @@ summary::-webkit-details-marker {
   margin-bottom: 1.5rem;
 }
 
+.-mr-1 {
+  margin-right: -0.25rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .mt-10 {
@@ -641,14 +644,6 @@ summary::-webkit-details-marker {
   margin-left: 0.25rem;
 }
 
-.-mr-1 {
-  margin-right: -0.25rem;
-}
-
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
 .block {
   display: block;
 }
@@ -665,6 +660,10 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -673,12 +672,12 @@ summary::-webkit-details-marker {
   height: 4rem;
 }
 
-.h-4 {
-  height: 1rem;
-}
-
 .w-64 {
   width: 16rem;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .w-5 {
@@ -687,10 +686,6 @@ summary::-webkit-details-marker {
 
 .w-12 {
   width: 3rem;
-}
-
-.w-4 {
-  width: 1rem;
 }
 
 .max-w-4xl {
@@ -969,18 +964,12 @@ summary::-webkit-details-marker {
   text-decoration-line: underline;
 }
 
-.opacity-50 {
-  opacity: 0.5;
-}
-
 .opacity-75 {
   opacity: 0.75;
 }
 
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .hover\:bg-sky-50:hover {
@@ -988,35 +977,13 @@ summary::-webkit-details-marker {
   background-color: rgb(240 249 255 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-slate-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-
 .hover\:text-sky-600:hover {
   --tw-text-opacity: 1;
   color: rgb(2 132 199 / var(--tw-text-opacity));
 }
 
-.hover\:text-black:hover {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-}
-
 .hover\:underline:hover {
   text-decoration-line: underline;
-}
-
-.hover\:opacity-90:hover {
-  opacity: 0.9;
-}
-
-.hover\:opacity-50:hover {
-  opacity: 0.5;
-}
-
-.hover\:opacity-60:hover {
-  opacity: 0.6;
 }
 
 .group:hover .group-hover\:visible {

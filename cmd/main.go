@@ -2,10 +2,14 @@ package main
 
 import (
 	"bytes"
+	"hash/fnv"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"strings"
+	"sync"
+	"time"
 
 	"github.com/go-seatbelt/seatbelt"
 
@@ -15,10 +19,28 @@ import (
 	"github.com/alecthomas/chroma/styles"
 )
 
+// hl is the global highlighter.
+var hl = &highlighter{
+	pool: &sync.Pool{
+		New: func() any {
+			return &bytes.Buffer{}
+		},
+	},
+	data:  make(map[uint64]template.HTML),
+	style: registerSeatbeltStyle(),
+	formatter: html.New(
+		html.Standalone(true),
+		html.PreventSurroundingPre(true),
+	),
+}
+
 func main() {
+	log.Println("Starting server...")
+	reload := os.Getenv("ENV") != "production"
+
 	app := seatbelt.New(seatbelt.Option{
 		TemplateDir: "templates",
-		Reload:      os.Getenv("ENV") != "production",
+		Reload:      reload,
 		Funcs: func(w http.ResponseWriter, r *http.Request) template.FuncMap {
 			return template.FuncMap{
 				"CurrentPageClasses": func(path, active, inactive string) string {
@@ -27,8 +49,8 @@ func main() {
 					}
 					return inactive
 				},
-				"highlight":       highlight,
-				"highlightinline": highlightInline,
+				"highlight":       hl.highlight,
+				"highlightinline": hl.highlightInline,
 			}
 		},
 	})
@@ -52,29 +74,65 @@ func main() {
 	app.Get("/api", func(c *seatbelt.Context) error {
 		return c.Render("api", nil)
 	})
-	app.Start(":3000")
+
+	log.Printf("Started the server on http://localhost:3000 with reload=%v", reload)
+	srv := &http.Server{
+		Addr:           ":3000",
+		Handler:        app,
+		ReadTimeout:    30 * time.Second,
+		WriteTimeout:   15 * time.Second,
+		MaxHeaderBytes: http.DefaultMaxHeaderBytes,
+	}
+	log.Fatalln(srv.ListenAndServe())
+}
+
+type highlighter struct {
+	mu        sync.Mutex
+	pool      *sync.Pool
+	data      map[uint64]template.HTML
+	style     *chroma.Style
+	formatter chroma.Formatter
+}
+
+func (h *highlighter) read(n uint64) (template.HTML, bool) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	result, ok := h.data[n]
+	return result, ok
+}
+
+func (h *highlighter) write(n uint64, data template.HTML) {
+	h.mu.Lock()
+	h.data[n] = data
+	h.mu.Unlock()
+}
+
+// hash computes the hash of the given string.
+func (h *highlighter) hash(s string) uint64 {
+	hash := fnv.New64a()
+	hash.Write([]byte(s))
+	return hash.Sum64()
 }
 
 // highlight adds syntax highlighting to the given string.
-//
-// TODO Cache highlight results so that we don't have to precompile them.
-func highlight(lang, s string) template.HTML {
+func (h *highlighter) highlight(lang, s string) template.HTML {
+	// Check the cache first to see if there's a stored result.
+	if result, ok := h.read(h.hash(s)); ok {
+		return result
+	}
+
 	lexer := lexers.Get(lang)
-
-	style := registerSeatbeltStyle()
-
-	formatter := html.New(
-		html.Standalone(true),
-		html.PreventSurroundingPre(true),
-	)
 
 	iterator, err := lexer.Tokenise(nil, s)
 	if err != nil {
 		return template.HTML(err.Error())
 	}
 
-	buf := &bytes.Buffer{}
-	if err := formatter.Format(buf, style, iterator); err != nil {
+	buf := h.pool.Get().(*bytes.Buffer)
+	buf.Reset()
+	defer h.pool.Put(buf)
+
+	if err := h.formatter.Format(buf, h.style, iterator); err != nil {
 		return template.HTML(err.Error())
 	}
 
@@ -83,17 +141,19 @@ func highlight(lang, s string) template.HTML {
 	highlighted = strings.TrimSuffix(highlighted, "</body>\n</html>\n")
 	highlighted = strings.TrimSpace(highlighted)
 
+	// Save the computed highlighted code in the cache.
+	h.write(h.hash(s), template.HTML(highlighted))
 	return template.HTML(highlighted)
 }
 
-func highlightInline(lang, s string) template.HTML {
+func (h *highlighter) highlightInline(lang, s string) template.HTML {
 	const open = `<code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">`
 	const close = `</code>`
-	return open + highlight(lang, s) + close
+	return open + h.highlight(lang, s) + close
 }
 
 var samples = map[string]interface{}{
-	"QuickstartGo": highlight("go", `package main
+	"QuickstartGo": hl.highlight("go", `package main
 
 import "github.com/go-seatbelt/seatbelt"
 
@@ -105,7 +165,7 @@ func main() {
     app.Start(":3000")
 }`),
 
-	"RenderGo": highlight("go", `package main
+	"RenderGo": hl.highlight("go", `package main
 
 import "github.com/go-seatbelt/seatbelt"
 
@@ -119,7 +179,7 @@ func main() {
     app.Start(":3000")
 }`),
 
-	"RenderHTML": highlight("go html template", `<!DOCTYPE html>
+	"RenderHTML": hl.highlight("go html template", `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -131,7 +191,7 @@ func main() {
 </body>
 </html>`),
 
-	"SessionGo": highlight("go", `package main
+	"SessionGo": hl.highlight("go", `package main
 
 import "github.com/go-seatbelt/seatbelt"
 
@@ -149,7 +209,7 @@ func main() {
 	app.Start(":3000")
 }`),
 
-	"SessionHTML": highlight("go html template", `<!DOCTYPE html>
+	"SessionHTML": hl.highlight("go html template", `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
