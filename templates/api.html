@@ -1,8 +1,8 @@
 {{ template "components/header" . }}
 
-<div class="">
-  <div class="relative hidden md:block w-64 ml-6 mt-4">
-    <div class="bg-slate-100 fixed rounded-lg px-4 py-6">
+<div class="relative">
+  <div class="fixed top-24 bottom-6 overflow-y-scroll hidden md:block w-64 ml-6 mt-4 rounded-lg">
+    <div class="bg-slate-100 px-4 py-6">
       <h2 class="text-lg font-bold mb-6">seatbelt.App</h2>
       <a href="/api#seatbelt.App" class="js-toc js-one block mb-4 text-sm font-mono hover:underline">type seatbelt.App</a>
       <a href="/api#seatbelt.New" class="js-toc js-two block mb-4 text-sm font-mono hover:underline">func seatbelt.New</a>
@@ -10,16 +10,51 @@
       <a href="/api#seatbelt.Use" class="js-toc js-four block mb-4 text-sm font-mono hover:underline">func app.Use</a>
       <a href="/api#seatbelt.UseStd" class="js-toc js-five block mb-4 text-sm font-mono hover:underline">func app.UseStd</a>
       <a href="/api#seatbelt.SetErrorHandler" class="js-toc js-six block mb-4 text-sm font-mono hover:underline">func app.SetErrorHandler</a>
-      <a href="/api#seatbelt.Namespace" class="js-toc js-seven block mb-4 text-sm font-mono hover:underline">func app.Namespace</a>
+      <a href="/api#seatbelt.Get" class="js-toc js-seven block mb-4 text-sm font-mono hover:underline">func app.Get</a>
+      <a href="/api#seatbelt.Post" class="js-toc js-eight block mb-4 text-sm font-mono hover:underline">func app.Post</a>
+      <a href="/api#seatbelt.Put" class="js-toc js-nine block mb-4 text-sm font-mono hover:underline">func app.Put</a>
+      <a href="/api#seatbelt.Patch" class="js-toc js-ten block mb-4 text-sm font-mono hover:underline">func app.Patch</a>
+      <a href="/api#seatbelt.Delete" class="js-toc js-eleven block mb-4 text-sm font-mono hover:underline">func app.Delete</a>
+      <a href="/api#seatbelt.Head" class="js-toc js-twelve block mb-4 text-sm font-mono hover:underline">func app.Head</a>
+      <a href="/api#seatbelt.Options" class="js-toc js-thirteen block mb-4 text-sm font-mono hover:underline">func app.Options</a>
+      <a href="/api#seatbelt.Namespace" class="js-toc js-fourteen block mb-4 text-sm font-mono hover:underline">func app.Namespace</a>
+      <a href="/api#seatbelt.FileServer" class="js-toc js-fifteen block mb-4 text-sm font-mono hover:underline">func app.FileServer</a>
+      <a href="/api#seatbelt.ServeHTTP" class="js-toc js-sixteen block mb-4 text-sm font-mono hover:underline">func app.ServeHTTP</a>
+      <h2 class="text-lg font-bold my-6">seatbelt.Context</h2>
+      <a href="/api#seatbelt.Context" class="js-toc js-seventeen block mb-4 text-sm font-mono hover:underline">type seatbelt.Context</a>
+      <a href="/api#seatbelt.Render" class="js-toc js-eighteen block mb-4 text-sm font-mono hover:underline">func context.Render</a>
+      <a href="/api#seatbelt.String" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.String</a>
+      <a href="/api#seatbelt.JSON" class="js-toc js-twenty block mb-4 text-sm font-mono hover:underline">func context.JSON</a>
+      <a href="/api#seatbelt.NoContent" class="js-toc js-twentyone block mb-4 text-sm font-mono hover:underline">func context.NoContent</a>
+      <a href="/api#seatbelt.Redirect" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Redirect</a>
+      <a href="/api#seatbelt.Params" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Params</a>
+      <a href="/api#seatbelt.FormValue" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.FormValue</a>
+      <a href="/api#seatbelt.PathParam" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.PathParam</a>
+      <a href="/api#seatbelt.QueryParam" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.QueryParam</a>
+      <a href="/api#seatbelt.GetIP" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.GetIP</a>
+      <a href="/api#seatbelt.Request" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Request</a>
+      <a href="/api#seatbelt.Response" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Response</a>
+      <a href="/api#seatbelt.Session.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Set</a>
+      <a href="/api#seatbelt.Session.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Get</a>
+      <a href="/api#seatbelt.Session.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.List</a>
+      <a href="/api#seatbelt.Session.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Delete</a>
+      <a href="/api#seatbelt.Session.Reset" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Reset</a>
+      <a href="/api#seatbelt.Flash.Add" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.Add</a>
+      <a href="/api#seatbelt.Flash.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.List</a>
+      <a href="/api#seatbelt.Values.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Set</a>
+      <a href="/api#seatbelt.Values.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Get</a>
+      <a href="/api#seatbelt.Values.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.List</a>
+      <a href="/api#seatbelt.Values.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Delete</a>
+      <a href="/api#seatbelt.I18N.T" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.I18N.T</a>
     </div>
   </div>
 
   <div class="pl-0 md:pl-72 mt-10">
-    <main class="max-w-3xl p-6">
+    <main class="p-6">
       <h1 class="text-3xl sm:text-6xl font-extrabold tracking-tight mb-12 text-pink-500">API Reference</h1>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
           <h3 id="seatbelt.App" class="js-symbol-title js-one font-mono">
             <a name="seatbelt.App">{{ highlight "go" "type seatbelt.App" }}</a>
           </h3>
@@ -61,7 +96,7 @@ func main() {
       </section>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
           <h3 id="seatbelt.New" class="js-symbol-title js-two font-mono">
             <a name="seatbelt.New">{{ highlight "go" "func seatbelt.New(opts ...seatbelt.Opts) *seatbelt.App" }}</a>
           </h3>
@@ -78,12 +113,12 @@ func main() {
         <p class="text-slate-600 text-base leading-relaxed mb-4">Use <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">seatbelt.New</code> to create and configure a new instance of a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">*seatbelt.App</code> using the given <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">seabelt.Opts</code> to configure it. The following options are available:</p>
         <ul class="list-outside list-disc text-slate-600 text-base leading-relaxed pl-12 mb-4">
           <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "TemplateDir string" }}</code> The directory containing your HTML templates. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">"templates"</code>.</li>
-          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">LocaleDir <span class="text-sky-600">string</span></code> The directory containing your translation files. Defaults to an empty string, which disables translation support in your application.</li>
-          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SigningKey <span class="text-sky-600">string</span></code> The secret key used to sign the session cookie. Defaults to an empty string. Setting an empty string will cause Seatbelt to generate a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">master.key</code> file at the root of your application, which Seatbelt picks up and uses to sign sessions. This generated secret is used for convenience in development only. Do not put this secret under source control, and set this value automatically by setting the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SECRET</code> environment variable in production.</li>
-          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SessionName <span class="text-sky-600">string</span></code> The name of the session cookie. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">"_session"</code>.</li>
-          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SessionMaxAge <span class="text-sky-600">int</span></code> The max age that the session cookie is valid. Defaults to 365 days. Pass <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">-1</code> if you want the session to never expire.</li>
-          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">Reload <span class="text-sky-600">bool</span></code> Whether to reload the HTML templates and translation data from the filesystem on each request. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">false</code>. This is provided as a convenience in development, but significantly impacts performance. Do not enable this in production.</li>
-          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SkipServeFiles <span class="text-sky-600">bool</span></code> When true, this stops Seatbelt from serving static files from the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">public</code> folder. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">false</code>, meaning that static files are served by default.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "LocaleDir string" }}</code> The directory containing your translation files. Defaults to an empty string, which disables translation support in your application.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "SigningKey string" }}</code> The secret key used to sign the session cookie. Defaults to an empty string. Setting an empty string will cause Seatbelt to generate a <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">master.key</code> file at the root of your application, which Seatbelt picks up and uses to sign sessions. This generated secret is used for convenience in development only. Do not put this secret under source control, and set this value automatically by setting the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">SECRET</code> environment variable in production.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "SessionName string" }}</code> The name of the session cookie. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">"_session"</code>.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "SessionMaxAge int" }}</code> The max age that the session cookie is valid. Defaults to 365 days. Pass <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">-1</code> if you want the session to never expire.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "Reload bool" }}</code> Whether to reload the HTML templates and translation data from the filesystem on each request. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">false</code>. This is provided as a convenience in development, but significantly impacts performance. Do not enable this in production.</li>
+          <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "SkipServeFiles bool" }}</code> When true, this stops Seatbelt from serving static files from the <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">public</code> folder. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">false</code>, meaning that static files are served by default.</li>
           <li class="mb-3"><code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">{{ highlight "go" "Funcs func(w http.ResponseWriter, r *http.Request) template.FuncMap" }}</code> HTML template functions to call from your templates. Defaults to <code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">nil</code>, but please see the list of default functions.</li>
         </ul>
 
@@ -118,7 +153,7 @@ func main() {
       </section>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
           <h3 id="seatbelt.Start" class="js-symbol-title js-three font-mono">
             <a name="seatbelt.Start">{{ highlight "go" "func (app *seatbelt.App) Start(port string) error" }}</a>
           </h3>
@@ -149,7 +184,7 @@ func main() {
       </section>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
           <h3 id="seatbelt.Use" class="js-symbol-title js-four font-mono">
             <a name="seatbelt.Use">{{ highlight "go" "func (app *seatbelt.App) Use(middleware ...seatbelt.MiddlewareFunc)" }}</a>
           </h3>
@@ -190,7 +225,7 @@ func main() {
       </section>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
           <h3 id="seatbelt.UseStd" class="js-symbol-title js-five font-mono">
             <a name="seatbelt.UseStd">{{ highlight "go" "func (app *seatbelt.App) UseStd(middleware ...func(http.Handler) http.Handler)" }}</span></a>
           </h3>
@@ -208,7 +243,7 @@ func main() {
       </section>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
           <h3 id="seatbelt.SetErrorHandler" class="js-symbol-title js-six font-mono">
             <a name="seatbelt.SetErrorHandler">{{ highlight "go" "func (a *seatbelt.App) SetErrorHandler(fn func(c *seatbelt.Context, err error))" }}</a>
           </h3>
@@ -226,11 +261,122 @@ func main() {
       </section>
 
       <section class="mb-16">
-        <div class="group flex items-center text-sm sm:text-xl font-semibold mb-4">
-          <h3 id="seatbelt.Namespace" class="js-symbol-title js-seven font-mono">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Get" class="js-symbol-title js-seven font-mono">
+            <a name="seatbelt.Get">{{ highlight "go" "func (app *seatbelt.App) Get(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Get" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Post" class="js-symbol-title js-eight font-mono">
+            <a name="seatbelt.Post">{{ highlight "go" "func (app *seatbelt.App) Post(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Post" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Put" class="js-symbol-title js-nine font-mono">
+            <a name="seatbelt.Put">{{ highlight "go" "func (app *seatbelt.App) Put(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Put" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Patch" class="js-symbol-title js-ten font-mono">
+            <a name="seatbelt.Patch">{{ highlight "go" "func (app *seatbelt.App) Patch(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Patch" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Delete" class="js-symbol-title js-eleven font-mono">
+            <a name="seatbelt.Delete">{{ highlight "go" "func (app *seatbelt.App) Delete(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Delete" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Head" class="js-symbol-title js-twelve font-mono">
+            <a name="seatbelt.Head">{{ highlight "go" "func (app *seatbelt.App) Head(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Head" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Options" class="js-symbol-title js-thirteen font-mono">
+            <a name="seatbelt.Options">{{ highlight "go" "func (app *seatbelt.App) Options(pattern string, func(c *seatbelt.Context) error" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Options" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Namespace" class="js-symbol-title js-fourteen font-mono">
             <a name="seatbelt.Namespace">{{ highlight "go" "func (app *seatbelt.App) Namespace(pattern string, fn func(app *seatbelt.App)) *seatbelt.App" }}</a>
           </h3>
-
           <div class="invisible group-hover:visible ml-2">
             <a href="#seatbelt.Namespace" class="block">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
@@ -239,8 +385,75 @@ func main() {
             </a>
           </div>
         </div>
-
         <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.FileServer" class="js-symbol-title js-fifteen font-mono">
+            <a name="seatbelt.FileServer">{{ highlight "go" "func (app *seatbelt.App) FileServer(pattern path, string)" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.FileServer" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Serves static files from the given pattern under the given path.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.ServeHTTP" class="js-symbol-title js-sixteen font-mono">
+            <a name="seatbelt.ServeHTTP">{{ highlight "go" "func (app *seatbelt.App) ServeHTTP(w http.ResponseWriter, r *http.Request)" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.ServeHTTP" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Implements the ServeHTTP method in order to satisfy the {{ highlightinline "go" "http.Handler" }} interface.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="seatbelt.Context" class="js-symbol-title js-seventeen font-mono">
+            <a name="seatbelt.Context">{{ highlight "go" "type seatbelt.Context" }}</a>
+          </h3>
+
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#seatbelt.Context" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-slate-600 text-base leading-relaxed mb-4">A {{ highlightinline "go" "*seatbelt.Context" }} is an HTTP handler context. It contains the current HTTP request, a response writer, and a number of methods for interacting with the request and response.</p>
+
+        <div>
+          <pre class="text-sm rounded-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll"><code>{{ highlight "go" `package main
+
+import "github.com/go-seatbelt/seatbelt"
+
+// Creates a server that registers a handler on the path "/", and replies with
+// "Hello, world!".
+func main() {
+    app := seatbelt.New()
+
+    app.Get("/", func (c *seatbelt.Context) error {
+        return c.String(200, "Hello, world!")
+    })
+
+    app.Start(":3000")
+}` }}</code></pre>
+        </div>
       </section>
     </main>
   </div>

@@ -27,7 +27,8 @@ func main() {
 					}
 					return inactive
 				},
-				"highlight": highlight,
+				"highlight":       highlight,
+				"highlightinline": highlightInline,
 			}
 		},
 	})
@@ -83,6 +84,12 @@ func highlight(lang, s string) template.HTML {
 	highlighted = strings.TrimSpace(highlighted)
 
 	return template.HTML(highlighted)
+}
+
+func highlightInline(lang, s string) template.HTML {
+	const open = `<code class="inline-block bg-slate-100 px-1 rounded-md text-sm sm:text-base">`
+	const close = `</code>`
+	return open + highlight(lang, s) + close
 }
 
 var samples = map[string]interface{}{
