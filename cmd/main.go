@@ -17,6 +17,7 @@ import (
 	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/lexers"
 	"github.com/alecthomas/chroma/styles"
+	"golang.org/x/exp/slog"
 )
 
 // hl is the global highlighter.
@@ -32,6 +33,22 @@ var hl = &highlighter{
 		html.Standalone(true),
 		html.PreventSurroundingPre(true),
 	),
+}
+
+// logger is logging HTTP middleware.
+func logger(fn func(_ *seatbelt.Context) error) func(*seatbelt.Context) error {
+	return func(c *seatbelt.Context) error {
+		now := time.Now()
+		defer func() {
+			dur := time.Since(now)
+			slog.Info("received request",
+				slog.Duration("dur", dur),
+				slog.String("path", c.Request().URL.Path),
+			)
+		}()
+
+		return fn(c)
+	}
 }
 
 func main() {
@@ -54,6 +71,8 @@ func main() {
 			}
 		},
 	})
+
+	app.Use(logger)
 
 	app.Get("/", func(c *seatbelt.Context) error {
 		data := make(map[string]interface{})
@@ -137,8 +156,9 @@ func (h *highlighter) highlight(lang, s string) template.HTML {
 	}
 
 	highlighted := buf.String()
-	highlighted = strings.TrimPrefix(highlighted, "<html>\n<body style=\"\">\n")
-	highlighted = strings.TrimSuffix(highlighted, "</body>\n</html>\n")
+	// Trim leading and trailing html and body tags that cause rendering
+	// errors.
+	highlighted = highlighted[23 : len(highlighted)-16]
 	highlighted = strings.TrimSpace(highlighted)
 
 	// Save the computed highlighted code in the cache.

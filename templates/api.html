@@ -46,18 +46,18 @@
         <a href="/api#context.GetIP" class="js-toc js-twentyseven block mb-4 text-sm font-mono hover:underline">func context.GetIP</a>
         <a href="/api#context.Request" class="js-toc js-twentyeight block mb-4 text-sm font-mono hover:underline">func context.Request</a>
         <a href="/api#context.Response" class="js-toc js-twentynine block mb-4 text-sm font-mono hover:underline">func context.Response</a>
-        <a href="/api#context.Session.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Set</a>
-        <a href="/api#context.Session.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Get</a>
-        <a href="/api#context.Session.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.List</a>
-        <a href="/api#context.Session.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Delete</a>
-        <a href="/api#context.Session.Reset" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Session.Reset</a>
-        <a href="/api#context.Flash.Add" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.Add</a>
-        <a href="/api#context.Flash.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Flash.List</a>
-        <a href="/api#context.Values.Set" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Set</a>
-        <a href="/api#context.Values.Get" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Get</a>
-        <a href="/api#context.Values.List" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.List</a>
-        <a href="/api#context.Values.Delete" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.Values.Delete</a>
-        <a href="/api#context.I18N.T" class="js-toc js-nineteen block mb-4 text-sm font-mono hover:underline">func context.I18N.T</a>
+        <a href="/api#context.Session.Set" class="js-toc js-thirty block mb-4 text-sm font-mono hover:underline">func context.Session.Set</a>
+        <a href="/api#context.Session.Get" class="js-toc js-thirtyone block mb-4 text-sm font-mono hover:underline">func context.Session.Get</a>
+        <a href="/api#context.Session.List" class="js-toc js-thirtytwo block mb-4 text-sm font-mono hover:underline">func context.Session.List</a>
+        <a href="/api#context.Session.Delete" class="js-toc js-thirtythree block mb-4 text-sm font-mono hover:underline">func context.Session.Delete</a>
+        <a href="/api#context.Session.Reset" class="js-toc js-thirtyfour block mb-4 text-sm font-mono hover:underline">func context.Session.Reset</a>
+        <a href="/api#context.Flash.Add" class="js-toc js-thirtyfive block mb-4 text-sm font-mono hover:underline">func context.Flash.Add</a>
+        <a href="/api#context.Flash.List" class="js-toc js-thirtysix block mb-4 text-sm font-mono hover:underline">func context.Flash.List</a>
+        <a href="/api#context.Values.Set" class="js-toc js-thirtyseven block mb-4 text-sm font-mono hover:underline">func context.Values.Set</a>
+        <a href="/api#context.Values.Get" class="js-toc js-thirtyeight block mb-4 text-sm font-mono hover:underline">func context.Values.Get</a>
+        <a href="/api#context.Values.List" class="js-toc js-thirtynine block mb-4 text-sm font-mono hover:underline">func context.Values.List</a>
+        <a href="/api#context.Values.Delete" class="js-toc js-fourty block mb-4 text-sm font-mono hover:underline">func context.Values.Delete</a>
+        <a href="/api#context.I18N.T" class="js-toc js-fourtyone block mb-4 text-sm font-mono hover:underline">func context.I18N.T</a>
       </details>
     </div>
   </div>
@@ -253,6 +253,29 @@ func main() {
         </div>
 
         <p class="text-slate-600 text-base leading-relaxed mb-4">Registers standard library compatible HTTP middleware on the application.</p>
+
+        <div>
+          <pre class="text-sm rounded-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll"><code>{{ highlight "go" `package main
+
+import (
+    "log"
+    "net/http"
+
+    "github.com/go-seatbelt/seatbelt"
+)
+
+func logger(h http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        log.Printf("received request: %s\n", r.URL.Path)
+        h.ServeHTTP(w, r)
+    })
+}
+
+func main() {
+    app := seatbelt.New()
+    app.UseStd(logger)
+}`}}</code></pre>
+        </div>
       </section>
 
       <section class="mb-16">
@@ -271,6 +294,46 @@ func main() {
         </div>
 
         <p class="text-slate-600 text-base leading-relaxed mb-4">Sets the given function as the application-wide error handler. When this handler isn't set, the default behaviour is to log the error, and either reply with the error (for idempotent request) or redirect to the referrer with a flash message containing the error (for all other requests).</p>
+
+        <div>
+          <pre class="text-sm rounded-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll"><code>{{ highlight "go" `package main
+
+import (
+    "log"
+    "net/http"
+    "strings"
+
+    "github.com/go-seatbelt/seatbelt"
+)
+
+func handleErr(c *seatbelt.Context, err error) {
+    accept := c.Request().Header.Get("Accept")
+
+    if strings.Contains(accept, "application/json") {
+        c.JSON(500, map[string]string{
+            "Error": err.Error(),
+        })
+        return
+    }
+
+    if strings.Contains(accept, "text/html") {
+        c.Render("error", map[string]any{
+            "Error": error
+        }, seatbelt.RenderOptions{
+            StatusCode: 500,
+        })
+        return
+    }
+
+    return c.String(500, "Error: " + err.Error())
+}
+
+func main() {
+    app := seatbelt.New()
+    app.SetErrorHandler(handleErr)
+}
+`}}</code></pre>
+        </div>
       </section>
 
       <section class="mb-16">
@@ -286,7 +349,32 @@ func main() {
             </a>
           </div>
         </div>
-        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO</p>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Registers the given function as an HTTP handler, responding to GET requests at the given path.</p>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">Path parameters can be registered on the given URL handler, and accessed in the handler by using {{ highlightinline "go" `c.PathParam` }}.</p>
+
+        <div>
+          <pre class="text-sm rounded-lg px-4 py-2.5 bg-slate-100 text-slate-900 overflow-x-scroll"><code>{{ highlight "go" `package main
+
+import (
+    "log"
+    "net/http"
+    "strings"
+
+    "github.com/go-seatbelt/seatbelt"
+)
+
+func main() {
+    app := seatbelt.New()
+    app.Get("/", func(c *seatbelt.Context) error {
+        return c.String(200, "Hello, world!")
+    })
+    app.Get("/users/{id}", func(c *seatbelt.Context) error {
+        // Returns the ID provided in the path.
+        return c.String(200, c.PathParam("id"))
+    })
+    app.Start(":3000")
+}`}}</code></pre>
+        </div>
       </section>
 
       <section class="mb-16">
@@ -652,6 +740,198 @@ func main() {
           </h3>
           <div class="invisible group-hover:visible ml-2">
             <a href="#context.Response" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Session.Set" class="js-symbol-title js-thirty font-mono">
+            <a name="context.Session.Set">{{ highlight "go" "func (c *seatbelt.ContextSession) Set(key string, val any)" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Session.Set" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Session.Get" class="js-symbol-title js-thirtyone font-mono">
+            <a name="context.Session.Get">{{ highlight "go" "func (c *seatbelt.ContextSession) Get(key string) any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Session.Get" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Session.List" class="js-symbol-title js-thirtytwo font-mono">
+            <a name="context.Session.List">{{ highlight "go" "func (c *seatbelt.ContextSession) List() map[string]any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Session.List" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Session.Delete" class="js-symbol-title js-thirtythree font-mono">
+            <a name="context.Session.Delete">{{ highlight "go" "func (c *seatbelt.ContextSession) Delete(key string) any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Session.Delete" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Session.Reset" class="js-symbol-title js-thirtyfour font-mono">
+            <a name="context.Session.Reset">{{ highlight "go" "func (c *seatbelt.ContextSession) Reset()" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Session.Reset" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Flash.Add" class="js-symbol-title js-thirtyfive font-mono">
+            <a name="context.Flash.Add">{{ highlight "go" "func (c *seatbelt.ContextFlash) Add(key string, val any)" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Flash.Add" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Flash.List" class="js-symbol-title js-thirtysix font-mono">
+            <a name="context.Flash.List">{{ highlight "go" "func (c *seatbelt.ContextFlash) List() map[string]any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Flash.List" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Values.Set" class="js-symbol-title js-thirtyseven font-mono">
+            <a name="context.Values.Set">{{ highlight "go" "func (c *seatbelt.ContextValues) Set(key string, val any)" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Values.Set" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Values.Get" class="js-symbol-title js-thirtyeight font-mono">
+            <a name="context.Values.Get">{{ highlight "go" "func (c *seatbelt.ContextValues) Get(key string) any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Values.Get" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Values.List" class="js-symbol-title js-thirtynine font-mono">
+            <a name="context.Values.List">{{ highlight "go" "func (c *seatbelt.ContextValues) List() map[string]any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Values.List" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.Values.Delete" class="js-symbol-title js-fourty font-mono">
+            <a name="context.Values.Delete">{{ highlight "go" "func (c *seatbelt.ContextValues) Delete(key string) any" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.Values.Delete" class="block">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="text-slate-600 text-base leading-relaxed mb-4">TODO.</p>
+      </section>
+
+      <section class="mb-16">
+        <div class="group flex items-center text-sm sm:text-lg font-semibold mb-4">
+          <h3 id="context.I18N.T" class="js-symbol-title js-fourtyone font-mono">
+            <a name="context.I18N.T">{{ highlight "go" "func (c *seatbelt.ContextI18N) T(name string, data map[string]any, count ..int) string" }}</a>
+          </h3>
+          <div class="invisible group-hover:visible ml-2">
+            <a href="#context.I18N.T" class="block">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
               </svg>
